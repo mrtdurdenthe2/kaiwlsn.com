@@ -31,7 +31,7 @@ export type MorphingDialogContextType = {
 const MorphingDialogContext =
   React.createContext<MorphingDialogContextType | null>(null);
 
-function useMorphingDialog() {
+export function useMorphingDialog() {
   const context = useContext(MorphingDialogContext);
   if (!context) {
     throw new Error(
@@ -268,14 +268,16 @@ function MorphingDialogTitle({
   className,
   style,
 }: MorphingDialogTitleProps) {
-  const { uniqueId } = useMorphingDialog();
+  const { isOpen, uniqueId } = useMorphingDialog();
 
   return (
     <motion.div
+      layout
       layoutId={`dialog-title-container-${uniqueId}`}
+      animate={{ filter: isOpen ? 'blur(0px)' : 'blur(30px)' }}
+      transition={{ duration: 0.1 }}
       className={className}
       style={style}
-      layout
     >
       {children}
     </motion.div>
@@ -293,11 +295,14 @@ function MorphingDialogSubtitle({
   className,
   style,
 }: MorphingDialogSubtitleProps) {
-  const { uniqueId } = useMorphingDialog();
+  const { isOpen, uniqueId } = useMorphingDialog();
 
   return (
     <motion.div
+      layout
       layoutId={`dialog-subtitle-container-${uniqueId}`}
+      animate={{ filter: isOpen ? 'blur(0px)' : 'blur(30px)' }}
+      transition={{ duration: 0.1 }}
       className={className}
       style={style}
     >
@@ -362,10 +367,11 @@ function MorphingDialogImage({
 
   return (
     <motion.img
+      layout
+      layoutId={`dialog-img-${uniqueId}`}
       src={src}
       alt={alt}
       className={cn(className)}
-      layoutId={`dialog-img-${uniqueId}`}
       style={style}
     />
   );
