@@ -25,7 +25,7 @@ export default async function Page() {
   return (
     <main className="container mx-auto p-4">
       {enriched.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-5 justify-items-center">
           {enriched.map(({ src, meta }) => (
             <MorphingDialogBasic
               key={src}
@@ -38,7 +38,7 @@ export default async function Page() {
           ))}
         </div>
       ) : (
-        <p>No images found.</p>
+        <p>Couldnt load work. Please contact me about this issue.</p>
       )}
     </main>
   );

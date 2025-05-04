@@ -42,14 +42,14 @@ import {
       <MorphingDialog
         transition={{
           type: 'ease-in-out',
-          duration: 0.13,
+          duration: 0.15,
         }}
       >
         <MorphingDialogTrigger
           style={{
-            borderRadius: '12px',
-            width: '600px',
-            height: '400px',
+            borderRadius: '14px',
+
+
           }}
           className='relative overflow-hidden border border-zinc-950/10 bg-white dark:border-zinc-50/10 dark:bg-zinc-900'
         >
@@ -82,8 +82,8 @@ import {
         <MorphingDialogContainer>
           <MorphingDialogContent
             style={{
-              borderRadius: '24px',
-              width: '800px',
+                width: '50%',
+                borderRadius: '20px',
             }}
             className='pointer-events-auto relative flex h-auto flex-col overflow-hidden border border-zinc-950/10 bg-white dark:border-zinc-50/10 dark:bg-zinc-900'
           >
