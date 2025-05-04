@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import GoogleIcon from '@/components/icons/GoogleIcon';
 import { Check } from 'lucide-react';
 

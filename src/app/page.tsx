@@ -2,7 +2,6 @@
 
 import { GlowEffect } from '@/components/ui/glow-effect';
 import { Inter, Victor_Mono } from 'next/font/google';
-import ShowcaseUI from '@/components/ShowcaseUI';
 import ExpandableShowcase from '@/components/ExpandableShowcase';
 import { motion } from 'motion/react';
 import { TextEffect } from '@/components/ui/text-effect';
@@ -72,7 +71,7 @@ export default function Home() {
             is an interface designer and frontend engineer from England, interested in
             machine learning, running businesses, and a bunch of other nerd stuff.
 
-            however, he'd rather you judge him based on his work
+            however, he&apos;d rather you judge him based on his work
           </TextEffect>
         </motion.div>
         <div className="flex flex-col items-start w-full gap-[10px]">
