@@ -20,7 +20,7 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
-// Create a motion-enabled section element
+// Create a motion-enabled section elements
 const MotionSection = motion.create('section');
 
 export default function Home() {
