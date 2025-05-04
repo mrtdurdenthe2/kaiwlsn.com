@@ -1,7 +1,7 @@
 'use client';
 import { cn } from '@/lib/utils';
 import { LayoutGroup, Transition, motion } from 'motion/react';
-import {
+import React, {
   Children,
   cloneElement,
   ReactElement,
@@ -9,6 +9,7 @@ import {
   useState,
   useRef,
   useId,
+  isValidElement,
 } from 'react';
 
 export type AnimatedBackgroundProps = {
@@ -72,8 +73,15 @@ export function AnimatedBackground({
         className="relative"
         onMouseLeave={enableHover ? handleHoverLeave : undefined}
       >
-        {Children.map(children, (child: any, index) => {
-          const id = child.props['data-id'];
+        {Children.map(children, (child, index) => {
+          if (!isValidElement(child)) return null;
+
+          // Ensure the child is a valid ReactElement with the expected data-id prop
+          const element = child as ReactElement<
+            Record<string, unknown> & { 'data-id': string }
+          >;
+
+          const id = element.props['data-id'] as string;
           // Update both persistent and active ID on click when hover-enabled
           const handleClick = (id: string) => {
             setPersistentId(id);
@@ -83,11 +91,16 @@ export function AnimatedBackground({
             ? { onMouseEnter: () => handleHoverEnter(id), onClick: () => handleClick(id) }
             : { onClick: () => handleSetActiveId(id) };
 
-          return cloneElement(
-            child,
+          return cloneElement<
+            Record<string, unknown> & { 'data-id': string }
+          >(
+            element,
             {
               key: index,
-              className: cn('relative inline-flex', child.props.className),
+              className: cn(
+                'relative inline-flex',
+                (element.props as { className?: string }).className
+              ),
               'data-checked': activeId === id ? 'true' : 'false',
               ...eventProps,
             },
@@ -100,7 +113,7 @@ export function AnimatedBackground({
                   transition={transition}
                 />
               )}
-              <div className='z-10'>{child.props.children}</div>
+              <div className='z-10'>{element.props.children as React.ReactNode}</div>
             </>
           );
         })}
