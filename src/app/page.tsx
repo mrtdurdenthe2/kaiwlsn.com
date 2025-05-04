@@ -1,103 +1,105 @@
-import Image from "next/image";
+"use client";
+
+import { GlowEffect } from '@/components/ui/glow-effect';
+import { Inter, Victor_Mono } from 'next/font/google';
+import ShowcaseUI from '@/components/ShowcaseUI';
+import ExpandableShowcase from '@/components/ExpandableShowcase';
+import { motion } from 'motion/react';
+import { TextEffect } from '@/components/ui/text-effect';
+
+const inter = Inter({ subsets: ['latin'], weight: ['400'] });
+const victorMono = Victor_Mono({ subsets: ['latin'], weight: ['200', '300'] });
+
+// Variants for staggered entrance
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.21 } },
+};
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
+// Create a motion-enabled section element
+const MotionSection = motion.create('section');
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+    <main className={`${inter.className} flex flex-col items-center scale-110`}>
+      <MotionSection
+        className="relative w-[516px] flex flex-col items-start p-0 gap-[32px]"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* Name and Age row */}
+        <div className="flex flex-row items-end p-0 gap-[18px] w-[288px] h-[61px]">
+          <motion.div variants={itemVariants}>
+            <TextEffect
+              per="char"
+              preset="fade-in-blur"
+              as="div"
+              speedReveal={1}
+              speedSegment={0.4}
+              className={`${victorMono.className} flex-none w-[126px] h-[61px] flex items-center font-[300] text-[70px] leading-[94px] text-black`}
+            >
+              Kai
+            </TextEffect>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} transition={{ delay: 0.2, duration: 0.5 }} variants={itemVariants} className="relative flex-none z-0">
+            <GlowEffect className="z-[-1]"
+              colors={['#FF5733', '#33FF57', '#3357FF', '#F1C40F']}
+              mode="colorShift"
+              blur="soft"
+              duration={3}
+              scale={0.94}
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <div
+              className="flex-none box-border inline-flex items-center justify-center p-[2px] gap-[10px] order-1 shadow-[0px_4px_61px_#DCDCDC,_inset_0px_2px_1.3px_rgba(255,255,255,0.6),_inset_0px_-2px_2px_rgba(255,255,255,0.6)] rounded-full"
+              style={{
+                background: 'linear-gradient(0deg, #FFFFFF 0%, #CFCFCF 51%, #FFFFFF 100%)',
+              }}
+            >
+              <div className="flex-none inline-flex justify-center items-center px-[11px] py-[5px] gap-[10px] bg-[#F1F1F1] shadow-[0px_4px_61px_#DCDCDC,_inset_0px_2px_1.3px_rgba(255,255,255,0.6),_inset_0px_-2px_2px_rgba(255,255,255,0.6)] rounded-full">
+                <TextEffect per="char" preset="fade" as="span" className={`${victorMono.className} w-[36px] h-[27px] flex items-center font-[200] text-[20px] leading-[27px] text-black`}>v18</TextEffect>
+              </div>
+            </div>
+          </motion.div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        {/* Description */}
+        <motion.div variants={itemVariants} className="w-full">
+          <TextEffect per="word" preset="fade-in-blur" as="p" speedReveal={4} speedSegment={0.3} className={`${inter.className} w-[516px] font-[400] text-[14px] leading-[19px] text-[#626262] m-0`}>
+            is an interface designer and frontend engineer from England, interested in
+            machine learning, running businesses, and a bunch of other nerd stuff.
+
+            however, he'd rather you judge him based on his work
+          </TextEffect>
+        </motion.div>
+        <div className="flex flex-col items-start w-full gap-[10px]">
+          <motion.div variants={itemVariants} className="w-full">
+            <TextEffect
+              per="char"
+              preset="fade-in-blur"
+              speedReveal={3.2}
+              speedSegment={0.3}
+              as="p"
+              delay={0.7}
+              className={`${inter.className} text-[20px] font-normal text-black mb-2`}
+            >
+              Latest Piece
+            </TextEffect>
+          </motion.div>
+          {/* Expandable UI Showcase */}
+          <motion.div
+            initial={{ opacity: 0, y: 20, filter: 'blur(12px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ delay: 0.7, duration: 1 }}
+            className="w-full"
+          >
+            <ExpandableShowcase />
+          </motion.div>
+        </div>
+      </MotionSection>
+    </main>
   );
 }
