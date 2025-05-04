@@ -24,7 +24,6 @@ export default async function Page() {
 
   return (
     <main className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6">Past Work</h1>
       {enriched.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {enriched.map(({ src, meta }) => (
