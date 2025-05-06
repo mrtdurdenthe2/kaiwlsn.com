@@ -6,11 +6,54 @@ import rehypeHighlight from 'rehype-highlight';
 import CodeBlock from '@/components/ui/CodeBlock';
 import { Lora } from 'next/font/google';
 import Image from 'next/image';
+import type { Metadata, ResolvingMetadata } from 'next';
 
 interface PostPageProps {
   params: Promise<{
     slug: string;
   }>;
+}
+
+type GenerateMetadataProps = {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
+export async function generateMetadata(
+  { params }: GenerateMetadataProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const post = await getPost(params.slug);
+  if (!post) {
+    return {
+      title: 'Post Not Found',
+    };
+  }
+
+  const previousImages = (await parent).openGraph?.images || [];
+  const imageUrl = post.frontMatter.image
+    ? post.frontMatter.image.replace(/^\/public/, '')
+    : ''; // Provide a fallback or handle no image case
+
+  return {
+    title: post.frontMatter.title,
+    description: post.frontMatter.excerpt || 'A blog post by Kai Wilson', // Fallback description
+    openGraph: {
+      title: post.frontMatter.title,
+      description: post.frontMatter.excerpt || 'A blog post by Kai Wilson',
+      images: imageUrl ? [{ url: imageUrl }, ...previousImages] : previousImages,
+      url: `/blog/${params.slug}`,
+      type: 'article',
+      publishedTime: post.frontMatter.date,
+      authors: ['Kai Wilson'], // Add author if available in frontmatter or set a default
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.frontMatter.title,
+      description: post.frontMatter.excerpt || 'A blog post by Kai Wilson',
+      images: imageUrl ? [imageUrl] : undefined, // Twitter images array takes strings
+    },
+  };
 }
 
 const lora = Lora({ subsets: ['latin'], weight: ['400'], display: 'swap' });
