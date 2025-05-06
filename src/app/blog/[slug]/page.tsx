@@ -15,15 +15,16 @@ interface PostPageProps {
 }
 
 type GenerateMetadataProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
   searchParams: { [key: string]: string | string[] | undefined };
 }
 
 export async function generateMetadata(
-  { params }: GenerateMetadataProps,
+  props: GenerateMetadataProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const post = await getPost(params.slug);
+  const { slug } = await props.params;
+  const post = await getPost(slug);
   if (!post) {
     return {
       title: 'Post Not Found',
@@ -42,7 +43,7 @@ export async function generateMetadata(
       title: post.frontMatter.title,
       description: post.frontMatter.excerpt || 'A blog post by Kai Wilson',
       images: imageUrl ? [{ url: imageUrl }, ...previousImages] : previousImages,
-      url: `/blog/${params.slug}`,
+      url: `/blog/${slug}`,
       type: 'article',
       publishedTime: post.frontMatter.date,
       authors: ['Kai Wilson'], // Add author if available in frontmatter or set a default
