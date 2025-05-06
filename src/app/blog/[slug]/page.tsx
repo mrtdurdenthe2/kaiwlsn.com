@@ -8,16 +8,16 @@ import { Lora } from 'next/font/google';
 import Image from 'next/image';
 
 interface PostPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 const lora = Lora({ subsets: ['latin'], weight: ['400'], display: 'swap' });
 
 export default async function PostPage(props: PostPageProps) {
   // await params to support streaming dynamic params
-  const { slug } = props.params;
+  const { slug } = await props.params;
   const post = await getPost(slug);
   if (!post) return notFound();
 
