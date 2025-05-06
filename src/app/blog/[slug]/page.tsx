@@ -5,7 +5,6 @@ import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import CodeBlock from '@/components/ui/CodeBlock';
 import { Lora } from 'next/font/google';
-import { Victor_Mono } from 'next/font/google';
 import Image from 'next/image';
 
 interface PostPageProps {
@@ -15,7 +14,6 @@ interface PostPageProps {
 }
 
 const lora = Lora({ subsets: ['latin'], weight: ['400'], display: 'swap' });
-const victorMono = Victor_Mono({ subsets: ['latin'], weight: ['300'] });
 
 export default async function PostPage(props: PostPageProps) {
   // await params to support streaming dynamic params

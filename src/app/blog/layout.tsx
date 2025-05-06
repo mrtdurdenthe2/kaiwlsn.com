@@ -8,8 +8,8 @@ interface BlogLayoutProps {
 export default function BlogLayout({ children }: BlogLayoutProps) {
   return (
     <div className="min-h-screen flex flex-col items-center px-4 md:px-0">
-      <header className="my-6">
-
+      <header className="my-6 w-full max-w-3xl">
+        <NavBar />
       </header>
       <main className="prose prose-slate lg:prose-lg dark:prose-invert w-full max-w-3xl">
         {children}
