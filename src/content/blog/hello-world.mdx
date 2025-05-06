@@ -1,0 +1,44 @@
+---
+title: "Test blog"
+date: "2025-05-05"
+excerpt: "My first MDX blog post using the new system."
+image: "/public/pastwork/image01.png"
+---
+
+
+
+# Hello World asd
+## Hello World asd
+## Hello World asd
+
+Awesome sauce brahhhhhhhhhhh
+
+```tsx
+// Example code snippet
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-black flex flex-col items-center min-h-screen`}
+      >
+        <div className="w-full flex-1 flex flex-col items-center justify-center pb-16">
+          {children}
+        </div>
+        <div className="fixed bottom-4 left-0 w-full flex justify-center px-4">
+          <NavBar />
+        </div>
+      </body>
+    </html>
+  );
+}
+
+```
+
+![A nice screenshot of my project](/pastwork/image01.png)
+
+> “The only limit to our realization of tomorrow is our doubts of today.”
+> — Franklin D. Roosevelt

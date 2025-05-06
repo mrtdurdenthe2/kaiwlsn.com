@@ -16,37 +16,37 @@ export interface PastWorkMeta {
 export const pastWorkMetadata: PastWorkMeta[] = [
   {
     filename: 'image01.png',
-    title: 'Project Genesis',
-    subtitle: 'Mixed-media Exploration',
+    title: 'CRT Screen View',
+    subtitle: 'Figma Design',
     description:
-      'An experimental piece combining traditional sketching with digital enhancement to capture the essence of creative genesis.',
+      'Designed CRT screen inspired by the Braun T1, with the intention of putting my personal website inside of it.',
   },
   {
     filename: 'image02.png',
-    title: 'Urban Symphony',
-    subtitle: 'Digital Illustration',
+    title: 'Sign up form',
+    subtitle: 'Designed in Figma, coded in NextJS andTailwindCSS using Clerk for auth',
     description:
-      'A vibrant illustration highlighting the rhythm and movement of metropolitan life through bold colors and dynamic shapes.',
+      'A sign up form UI that uses Clerks Beta feature that allows the use of custom sign in/up UI',
   },
   {
     filename: 'image03.png',
-    title: 'EB27',
-    subtitle: 'Lamp Study • 1925',
+    title: 'Navbar design exploration',
+    subtitle: 'Figma Design',
     description:
-      "A detailed visualization of Édouard-Wilfrid Buquet's iconic EB27 desk lamp, emphasizing its double-arm design and material textures.",
+      "Wanted to go for a metal looking navbar, with the selected button emmiting light onto the other buttons.",
   },
   {
     filename: 'image04.png',
-    title: 'Silent Waves',
-    subtitle: 'Concept Art',
+    title: 'LLM Model Selection UI',
+    subtitle: 'Designed in Figma, made in NextJS and TailwindCSS',
     description:
-      'A serene coastal scene exploring the interplay between light and water, rendered with soft gradients and subtle motion cues.',
+      'Wanted to go for game cartriged inspired UI, where the user can swich between AI manufacturers and models by swiping, then inserting the card once they have selected the model.',
   },
   {
     filename: 'image05.png',
-    title: 'Neon Drift',
-    subtitle: '3D Render',
+    title: 'Vine Concept',
+    subtitle: 'Designed in Figma',
     description:
-      'A futuristic vehicle drifting through a cyberpunk cityscape, showcasing advanced lighting techniques and reflective surfaces.',
+      'Wanted to make a design of what I would think the Vine app would look like today, inspired by the X mobile UI.',
   },
 ];

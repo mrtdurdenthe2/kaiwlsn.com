@@ -67,7 +67,7 @@ export default function Home() {
         </div>
         {/* Description */}
         <motion.div variants={itemVariants} className="w-full">
-          <TextEffect per="word" preset="fade-in-blur" as="p" speedReveal={4} speedSegment={0.3} className={`${inter.className} w-[516px] font-[400] text-[14px] leading-[19px] text-[#626262] m-0`}>
+          <TextEffect per="word" preset="fade-in-blur" as="p" speedReveal={4} speedSegment={0.3} className={`${inter.className} w-[516px] font-[400] text-[14px] leading-[19px] text-[#313131] m-0`}>
             is an interface designer and frontend engineer from England, interested in
             machine learning, running businesses, and a bunch of other nerd stuff.
 

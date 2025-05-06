@@ -14,7 +14,6 @@ export function NavBar() {
     // Define navigation items
     const navItems = [
         { href: "/", text: "Home" },
-        { href: "/currentproject", text: "Current Project" },
         { href: "/pastwork", text: "Past Work" },
         { href: "/blog", text: "Blog" }
     ];
