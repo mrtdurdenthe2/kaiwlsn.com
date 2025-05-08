@@ -49,4 +49,39 @@ export const pastWorkMetadata: PastWorkMeta[] = [
     description:
       'Wanted to make a design of what I would think the Vine app would look like today, inspired by the X mobile UI.',
   },
+  {
+    filename: 'image06.png',
+    title: 'SaaS Hero Section',
+    subtitle: 'Designed in Figma',
+    description:
+      'Mainly just a design exploration, wanted to go for a hero design that portrayed the product well without it being too in your face',
+  },
+  {
+    filename: 'image07.png',
+    title: 'Nav Bar',
+    subtitle: 'Designed in Figma',
+    description:
+      'Bit of a "Gamey" design, the gradient under the plus button would move around and rotate',
+  },
+  {
+    filename: 'image08.png',
+    title: 'X Spaces Live Chat Concept',
+    subtitle: 'Designed in Figma. Implemented with NextJS and TailwindCSS',
+    description:
+      'Created a concept of what I thought the X spaces should look like, taking advantage of Xs new subscriber message highlighting',
+  },
+  {
+    filename: 'image10png',
+    title: 'Testimonial Section',
+    subtitle: 'Designed in Figma, implemented with NextJS and TailwindCSS',
+    description:
+      'Aimed to recreate the iMessage style with the blue text boxes',
+  },
+  {
+    filename: 'image11.png',
+    title: 'Pricing Section',
+    subtitle: 'Designed in Figma, implemented with NextJS and TailwindCSS',
+    description:
+      'Made for a design agency, wanted to make the pricing clear while not making it too overwhelming between the options. The different colors at the top hint toward different pricing plans',
+  },
 ];
