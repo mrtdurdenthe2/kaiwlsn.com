@@ -1,7 +1,24 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { MorphingDialogBasic } from '@/components/dialoguebasic';
 import { pastWorkMetadata } from './workMetadata';
+import { PastWorkClient } from './pastwork-client';
+
+// Define a type for the 'meta' prop based on pastWorkMetadata structure
+// This should match or be compatible with MetaProps in pastwork-client.tsx
+type MetaProps = {
+  filename?: string;
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  // Add other properties if meta has them
+};
+
+// Define a type for the 'enriched' data items
+// This should match or be compatible with EnrichedImage in pastwork-client.tsx
+type EnrichedImage = {
+  src: string;
+  meta?: MetaProps; // meta can be undefined if not found
+};
 
 export default async function Page() {
   const publicDir = path.join(process.cwd(), 'public', 'pastwork');
@@ -13,33 +30,16 @@ export default async function Page() {
       .map((file) => `/pastwork/${file}`);
   } catch (error) {
     console.error('Error reading pastwork images:', error);
+    // Handle error state appropriately, perhaps by passing empty or error-indicating props
+    return <PastWorkClient enrichedImages={[]} />;
   }
 
   // merge images with metadata
-  const enriched = images.map((src) => {
+  const enriched: readonly EnrichedImage[] = images.map((src) => {
     const filename = src.split('/').pop() ?? '';
     const meta = pastWorkMetadata.find((m) => m.filename === filename);
-    return { src, meta } as const;
+    return { src, meta: meta ? { ...meta } : undefined };
   });
 
-  return (
-    <main className="container mx-auto p-4">
-      {enriched.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-5 justify-items-center">
-          {enriched.map(({ src, meta }) => (
-            <MorphingDialogBasic
-              key={src}
-              src={src}
-              alt={meta?.title || 'Past work image'}
-              title={meta?.title}
-              subtitle={meta?.subtitle}
-              description={meta?.description}
-            />
-          ))}
-        </div>
-      ) : (
-        <p>Couldnt load work. Please contact me about this issue.</p>
-      )}
-    </main>
-  );
+  return <PastWorkClient enrichedImages={enriched} />;
 }

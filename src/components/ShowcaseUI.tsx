@@ -25,11 +25,11 @@ export default function ShowcaseUI() {
                 }
             `}</style>
 
-            <div className="blur-in-animation box-border flex flex-row items-center p-9 gap-2.5 w-[420px] bg-[radial-gradient(175.12%_26.19%_at_50.07%_-1.48%,#001D37_0%,#000000_100%)] border border-[#373737] border-opacity-60 rounded-[14px]">
+            <div className="blur-in-animation box-border flex flex-row items-center p-4 sm:p-9 gap-2.5 w-full max-w-[420px] bg-[radial-gradient(175.12%_26.19%_at_50.07%_-1.48%,#001D37_0%,#000000_100%)] border border-[#373737] border-opacity-60 rounded-[14px]">
                 <div className="flex flex-col items-center p-0 gap-[46px] w-full">
                     {/* Logo Header */}
-                    <div className="flex flex-col items-center p-0 gap-7 w-[170px]">
-                        <div className="w-[170px] h-[46px] bg-[url('/logo.png')] bg-contain bg-no-repeat" />
+                    <div className="flex flex-col items-center p-0 gap-7 w-full max-w-[170px]">
+                        <div className="w-full max-w-[170px] h-[46px] bg-[url('/logo.png')] bg-contain bg-no-repeat" />
                         <span className="font-geist font-bold flex items-center justify-center text-center bg-gradient-to-r from-white to-white bg-clip-text text-transparent w-full">
                             Create your account
                         </span>

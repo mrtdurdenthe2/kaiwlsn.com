@@ -24,15 +24,15 @@ const MotionSection = motion.create('section');
 
 export default function Home() {
   return (
-    <main className={`${inter.className} flex flex-col items-center scale-110`}>
+    <main className={`${inter.className} flex flex-col items-center p-4 sm:p-0`}>
       <MotionSection
-        className="relative w-[516px] flex flex-col items-start p-0 gap-[32px]"
+        className="relative w-full max-w-[516px] flex flex-col items-start p-0 gap-[32px]"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         {/* Name and Age row */}
-        <div className="flex flex-row items-end p-0 gap-[18px] w-[288px] h-[61px]">
+        <div className="flex flex-row items-end p-0 gap-[12px] sm:gap-[18px] w-full max-w-[288px] h-auto sm:h-[61px]">
           <motion.div variants={itemVariants}>
             <TextEffect
               per="char"
@@ -40,7 +40,7 @@ export default function Home() {
               as="div"
               speedReveal={1}
               speedSegment={0.4}
-              className={`${victorMono.className} flex-none w-[126px] h-[61px] flex items-center font-[300] text-[70px] leading-[94px] text-black`}
+              className={`${victorMono.className} flex-none flex items-center font-[300] text-5xl sm:text-7xl leading-tight sm:leading-[94px] text-black`}
             >
               Kai
             </TextEffect>
@@ -59,15 +59,15 @@ export default function Home() {
                 background: 'linear-gradient(0deg, #FFFFFF 0%, #CFCFCF 51%, #FFFFFF 100%)',
               }}
             >
-              <div className="flex-none inline-flex justify-center items-center px-[11px] py-[5px] gap-[10px] bg-[#F1F1F1] shadow-[0px_4px_61px_#DCDCDC,_inset_0px_2px_1.3px_rgba(255,255,255,0.6),_inset_0px_-2px_2px_rgba(255,255,255,0.6)] rounded-full">
-                <TextEffect per="char" preset="fade" as="span" className={`${victorMono.className} w-[36px] h-[27px] flex items-center font-[200] text-[20px] leading-[27px] text-black`}>v18</TextEffect>
+              <div className="flex-none inline-flex justify-center items-center px-[9px] sm:px-[11px] py-[3px] sm:py-[5px] gap-[10px] bg-[#F1F1F1] shadow-[0px_4px_61px_#DCDCDC,_inset_0px_2px_1.3px_rgba(255,255,255,0.6),_inset_0px_-2px_2px_rgba(255,255,255,0.6)] rounded-full">
+                <TextEffect per="char" preset="fade" as="span" className={`${victorMono.className} flex items-center font-[200] text-lg sm:text-xl leading-snug sm:leading-[27px] text-black`}>v18</TextEffect>
               </div>
             </div>
           </motion.div>
         </div>
         {/* Description */}
         <motion.div variants={itemVariants} className="w-full">
-          <TextEffect per="word" preset="fade-in-blur" as="p" speedReveal={4} speedSegment={0.3} className={`${inter.className} w-[516px] font-[400] text-[14px] leading-[19px] text-[#313131] m-0`}>
+          <TextEffect per="word" preset="fade-in-blur" as="p" speedReveal={4} speedSegment={0.3} className={`${inter.className} w-full font-[400] text-sm sm:text-[14px] leading-normal sm:leading-[19px] text-[#313131] m-0`}>
             is an interface designer and frontend engineer from England, interested in
             machine learning, running businesses, and a bunch of other nerd stuff.
 
@@ -83,7 +83,7 @@ export default function Home() {
               speedSegment={0.3}
               as="p"
               delay={0.7}
-              className={`${inter.className} text-[20px] font-normal text-black mb-2`}
+              className={`${inter.className} text-lg sm:text-xl font-normal text-black mb-2`}
             >
               Latest Piece
             </TextEffect>
