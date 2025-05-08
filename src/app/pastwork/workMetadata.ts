@@ -71,7 +71,7 @@ export const pastWorkMetadata: PastWorkMeta[] = [
       'Created a concept of what I thought the X spaces should look like, taking advantage of Xs new subscriber message highlighting',
   },
   {
-    filename: 'image10png',
+    filename: 'image10.png',
     title: 'Testimonial Section',
     subtitle: 'Designed in Figma, implemented with NextJS and TailwindCSS',
     description:
