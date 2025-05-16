@@ -31,7 +31,7 @@ export default function RootLayout({
         <div className="w-full flex-1 flex flex-col items-center justify-center pb-16">
           {children}
         </div>
-        <div className="fixed bottom-4 left-0 w-full flex justify-center px-4">
+        <div className="fixed bottom-14 left-0 w-full flex justify-center px-14">
           <NavBar />
         </div>
       </body>
