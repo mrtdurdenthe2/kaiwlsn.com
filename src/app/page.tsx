@@ -77,14 +77,6 @@ export default function Home() {
                   </span>
                 </Link>
               </motion.div>
-              <motion.div initial={{ opacity: 0, y: 10, filter: 'blur(12px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} transition={{ delay: 0.3, duration: 0.5 }}>
-                <Link href="/currentproject" className="flex flex-row items-center gap-[4px] p-[9px] sm:p-0 rounded-[9px] outline-1 outline-black/6 sm:outline-none sm:rounded-none">
-                  <FolderIcon size={16} weight="duotone" className="text-[#717171]" />
-                  <span className="font-normal text-[14px] leading-[136.43%] no-underline sm:underline text-[#717171] hover:text-black transition-colors duration-200">
-                    Recent project
-                  </span>
-                </Link>
-              </motion.div>
             </div>
           </div>
         </div>
