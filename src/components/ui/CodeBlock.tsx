@@ -4,7 +4,7 @@
 import 'highlight.js/styles/github.css';
 import { useState, useRef, Children, isValidElement } from 'react';
 import type { ReactElement } from 'react';
-import { Copy, Check } from 'lucide-react';
+import { Copy, Check } from '@phosphor-icons/react';
 
 interface CodeBlockProps {
   children: React.ReactNode;
