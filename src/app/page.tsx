@@ -21,7 +21,7 @@ export default function Home() {
       path.style.strokeDashoffset = `${length}`;
       // Force a layout so the animation triggers correctly
       path.getBBox();
-      path.style.transition = 'stroke-dashoffset 2s ease-in';
+      path.style.transition = 'stroke-dashoffset 2s ease-out';
       path.style.strokeDashoffset = '0';
     }
     const svg = svgRef.current;
