@@ -2,7 +2,7 @@
 
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
-import { GithubLogoIcon,  FolderIcon} from '@phosphor-icons/react';
+import { GithubLogoIcon} from '@phosphor-icons/react';
 import { useRef, useLayoutEffect } from 'react';
 import { TextEffect } from '@/components/ui/text-effect';
 import { motion } from 'motion/react';
