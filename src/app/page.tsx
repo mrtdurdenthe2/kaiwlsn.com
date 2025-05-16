@@ -3,7 +3,7 @@
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import { GithubLogoIcon,  FolderIcon} from '@phosphor-icons/react';
-import { useRef, useEffect } from 'react';
+import { useRef, useLayoutEffect } from 'react';
 import { TextEffect } from '@/components/ui/text-effect';
 import { motion } from 'motion/react';
 
@@ -11,8 +11,9 @@ const inter = Inter({ subsets: ['latin'], weight: ['400'] });
 
 export default function Home() {
   const pathRef = useRef<SVGPathElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const path = pathRef.current;
     if (path) {
       const length = path.getTotalLength();
@@ -23,6 +24,10 @@ export default function Home() {
       path.style.transition = 'stroke-dashoffset 2s ease-in';
       path.style.strokeDashoffset = '0';
     }
+    const svg = svgRef.current;
+    if (svg) {
+      svg.style.visibility = 'visible';
+    }
   }, []);
 
   return (
@@ -31,7 +36,7 @@ export default function Home() {
         <div className="flex flex-col items-center sm:items-end gap-[36px] w-full">
           <div className="flex flex-col items-start gap-[31px] w-full">
             <div className="relative w-[167px] h-[165px]">
-              <svg viewBox="0 0 186 182" className="absolute top-0 left-0 w-full h-full">
+              <svg ref={svgRef} viewBox="0 0 186 182" style={{ visibility: 'hidden' }} className="absolute top-0 left-0 w-full h-full">
                 <defs>
                   <mask id="revealMask">
                     <rect width="100%" height="100%" fill="black" />
