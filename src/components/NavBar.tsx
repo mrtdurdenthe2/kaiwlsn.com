@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Inter } from 'next/font/google';
 import { motion, LayoutGroup } from 'motion/react';
-import { Home, Briefcase, BookOpen } from 'lucide-react';
+import { House, Suitcase, BookOpen } from '@phosphor-icons/react';
 import React, { Fragment, useState } from 'react';
 
 const inter = Inter({ subsets: ['latin'], weight: ['400'] });
@@ -15,9 +15,9 @@ export function NavBar() {
     const activeId = hoveredId ?? pathname;
 
     // Define navigation items
-    const navItems: { href: string; text: string; icon: React.ComponentType<{ size?: number }> }[] = [
-        { href: "/", text: "Home", icon: Home },
-        { href: "/pastwork", text: "Past Work", icon: Briefcase },
+    const navItems: { href: string; text: string; icon: React.ComponentType<{ size?: number; weight?: string }> }[] = [
+        { href: "/", text: "Home", icon: House },
+        { href: "/pastwork", text: "Past Work", icon: Suitcase },
         { href: "/blog", text: "Blog", icon: BookOpen }
     ];
 
@@ -59,7 +59,7 @@ export function NavBar() {
                                         transition={{ type: 'spring', bounce: 0.2, duration: 0.3 }}
                                         className="flex-shrink-0 flex items-center justify-center"
                                     >
-                                        <Icon size={24} />
+                                        <Icon size={24} weight="fill" />
                                     </motion.span>
                                 )}
                                 <span
