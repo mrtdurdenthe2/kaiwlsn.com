@@ -2,53 +2,82 @@
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { AnimatedBackground } from '@/components/ui/animated-background';
 import { Inter } from 'next/font/google';
-import { motion } from 'motion/react';
+import { motion, LayoutGroup } from 'motion/react';
+import { Home, Briefcase, BookOpen } from 'lucide-react';
+import React, { Fragment, useState } from 'react';
 
 const inter = Inter({ subsets: ['latin'], weight: ['400'] });
 
 export function NavBar() {
     const pathname = usePathname();
+    const [hoveredId, setHoveredId] = useState<string | null>(null);
+    const activeId = hoveredId ?? pathname;
 
     // Define navigation items
-    const navItems = [
-        { href: "/", text: "Home" },
-        { href: "/pastwork", text: "Past Work" },
-        { href: "/blog", text: "Blog" }
+    const navItems: { href: string; text: string; icon: React.ComponentType<{ size?: number }> }[] = [
+        { href: "/", text: "Home", icon: Home },
+        { href: "/pastwork", text: "Past Work", icon: Briefcase },
+        { href: "/blog", text: "Blog", icon: BookOpen }
     ];
 
     return (
-        <motion.div initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} transition={{ delay: 0.5, duration: 0.6 }}>
-            <div className={`${inter.className} flex flex-row justify-center items-center p-[2px] bg-gradient-to-b from-white via-[#D3D3D3] to-white shadow-[0px_4px_89.3px_rgba(0,0,0,0.1),inset_0px_2px_1.3px_rgba(255,255,255,0.6),inset_0px_-2px_2px_rgba(255,255,255,0.6)] rounded-[14px] max-w-full`}>
-                <div className="box-border flex flex-row flex-wrap justify-center items-center py-[4px] px-[1px] gap-[32px] bg-white rounded-[14px]">
-                    <AnimatedBackground
-                        defaultValue={pathname}
-                        enableHover
-                        className="rounded-[6px] bg-[#F4F4F4]"
-                        transition={{
-                            type: "spring",
-                            bounce: 0.2,
-                            duration: 0.3
-                        }}
-                    >
-                        {navItems.map((item) => (
+        <LayoutGroup>
+            <motion.div
+                onMouseLeave={() => setHoveredId(null)}
+                className={`${inter.className} box-border flex flex-row justify-center items-center pt-[4px] pr-[10px] pb-[4px] pl-[4px] gap-[21px] bg-[#F3F3F3] border border-[#EDEDED] rounded-[14px]`}
+                initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+            >
+                {navItems.map((item, index) => {
+                    const isSelected = pathname === item.href;
+                    const isActive = activeId === item.href;
+                    const Icon = item.icon;
+                    return (
+                        <Fragment key={item.href}>
                             <Link
                                 href={item.href}
-                                key={item.href}
                                 data-id={item.href}
-                                className="group mx-2"
+                                className="relative"
+                                onMouseEnter={() => setHoveredId(item.href)}
                             >
-                                <div className="flex flex-row justify-center items-center px-[10px] py-[7px] h-[38px]">
-                                    <span className="font-normal text-[20px] leading-[24px] flex items-center tracking-[-0.03em] text-center whitespace-nowrap text-[#626262] group-data-[checked=true]:text-black">
-                                        {item.text}
-                                    </span>
-                                </div>
+                            <div className={`relative z-10 inline-flex items-center pt-[5px] pr-[8px] pb-[5px] pl-[8px] ${
+                                isSelected ? 'gap-[10px] rounded-[10px]' : 'gap-[13px] rounded-[3.83681px]'
+                            }`}>
+                                {isActive && (
+                                    <motion.div
+                                        layoutId="nav-background"
+                                        className="absolute inset-0 bg-white/80 rounded-[10px] -z-10 pointer-events-none"
+                                        transition={{ type: 'spring', bounce: 0.2, duration: 0.3 }}
+                                    />
+                                )}
+                                {isSelected && (
+                                    <motion.span
+                                        initial={{ width: 0, opacity: 0 }}
+                                        animate={{ width: 24, opacity: 1 }}
+                                        transition={{ type: 'spring', bounce: 0.2, duration: 0.3 }}
+                                        className="flex-shrink-0 flex items-center justify-center"
+                                    >
+                                        <Icon size={24} />
+                                    </motion.span>
+                                )}
+                                <span
+                                    className={`font-normal text-[20px] leading-[26px] tracking-[-0.03em] whitespace-nowrap ${
+                                        isSelected ? 'text-black' : 'text-[#313131]'
+                                    }`}
+                                >
+                                    {item.text}
+                                </span>
+                            </div>
                             </Link>
-                        ))}
-                    </AnimatedBackground>
-                </div>
-            </div>
-        </motion.div>
+                            {index === 0 && (
+                                <div className="w-[14px] h-0 border border-white -rotate-90 flex-none" />
+                            )}
+                        </Fragment>
+                    );
+                })}
+            </motion.div>
+        </LayoutGroup>
     );
 }
