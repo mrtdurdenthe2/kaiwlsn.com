@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Inter } from 'next/font/google';
 import { motion, LayoutGroup } from 'motion/react';
-import { House, Suitcase, BookOpen } from '@phosphor-icons/react';
+import { House, Suitcase, BookOpen, IconProps } from '@phosphor-icons/react';
 import React, { Fragment, useState } from 'react';
 
 const inter = Inter({ subsets: ['latin'], weight: ['400'] });
@@ -15,7 +15,7 @@ export function NavBar() {
     const activeId = hoveredId ?? pathname;
 
     // Define navigation items
-    const navItems: { href: string; text: string; icon: React.ComponentType<{ size?: number; weight?: string }> }[] = [
+    const navItems: { href: string; text: string; icon: React.ComponentType<IconProps> }[] = [
         { href: "/", text: "Home", icon: House },
         { href: "/pastwork", text: "Past Work", icon: Suitcase },
         { href: "/blog", text: "Blog", icon: BookOpen }
@@ -28,7 +28,7 @@ export function NavBar() {
                 className={`${inter.className} box-border flex flex-row justify-center items-center pt-[4px] pr-[10px] pb-[4px] pl-[4px] gap-[21px] bg-[#F3F3F3] border border-[#EDEDED] rounded-[14px]`}
                 initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                transition={{ delay: 0.5, duration: 0.6 }}
+                transition={{ delay: 0, duration: 0.3 }}
             >
                 {navItems.map((item, index) => {
                     const isSelected = pathname === item.href;
@@ -49,14 +49,14 @@ export function NavBar() {
                                     <motion.div
                                         layoutId="nav-background"
                                         className="absolute inset-0 bg-white/80 rounded-[10px] -z-10 pointer-events-none"
-                                        transition={{ type: 'spring', bounce: 0.2, duration: 0.3 }}
+                                        transition={{ type: 'spring', duration: 0.3 }}
                                     />
                                 )}
                                 {isSelected && (
                                     <motion.span
                                         initial={{ width: 0, opacity: 0 }}
                                         animate={{ width: 24, opacity: 1 }}
-                                        transition={{ type: 'spring', bounce: 0.2, duration: 0.3 }}
+                                        transition={{ type: 'spring', duration: 0.3 }}
                                         className="flex-shrink-0 flex items-center justify-center"
                                     >
                                         <Icon size={24} weight="fill" />
