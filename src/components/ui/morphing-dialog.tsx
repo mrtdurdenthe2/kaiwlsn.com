@@ -18,7 +18,7 @@ import {
 } from 'motion/react';
 import { createPortal } from 'react-dom';
 import { cn } from '@/lib/utils';
-import { X, XIcon } from '@phosphor-icons/react';
+import { XIcon } from '@phosphor-icons/react';
 import useClickOutside from '@/hooks/useClickOutside';
 
 export type MorphingDialogContextType = {
