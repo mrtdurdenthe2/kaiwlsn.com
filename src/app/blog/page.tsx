@@ -6,7 +6,6 @@ export default async function BlogIndex() {
 
   return (
     <section className="w-full">
-      <h1 className="text-3xl font-bold mb-8">Blog</h1>
       <ul className="space-y-6">
         {posts.map((post) => (
           <li key={post.slug}>
