@@ -66,7 +66,7 @@ export default function Home() {
               speedSegment={0.66}
               className="font-normal text-[14px] leading-[136.43%] text-[#313131] w-full sm:w-[477px] sm:text-left"
             >
-              is an interface designer and frontend engineer from England, interested in functional design, Rust, running businesses, and a bunch of other nerd stuff. He is currently running designwithvalinor.com - a design agency currently on hold due to school work :/
+              is an interface designer and frontend engineer from England, interested in functional design, learning Rust, running businesses, and a bunch of other nerd stuff. He is currently running designwithvalinor.com - a design agency currently on hold due to school work :/
             </TextEffect>
             <div className="flex flex-row items-center gap-[17px] self-end">
               <motion.div initial={{ opacity: 0, y: 10, filter: 'blur(12px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} transition={{ delay: 0.2, duration: 0.5 }}>
