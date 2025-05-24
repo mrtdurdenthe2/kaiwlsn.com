@@ -66,8 +66,16 @@ export default function Home() {
               speedSegment={0.66}
               className="font-normal text-[14px] leading-[136.43%] text-[#313131] w-full sm:w-[477px] sm:text-left"
             >
-              is an interface designer and frontend engineer from England, interested in functional design, learning Rust, running businesses, and a bunch of other nerd stuff. He is currently running designwithvalinor.com - a design agency currently on hold due to school work :/
+              is a product-orientated software engineer from England, interested in functional design, learning Rust, running businesses, and a bunch of other nerd stuff. 
             </TextEffect>
+
+            {/* <motion.div initial={{ opacity: 0, y: 10, filter: 'blur(12px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} transition={{ delay: 0.2, duration: 0.5 }}>
+                <Link href="https://github.com/mrtdurdenthe2" className="flex flex-row items-center gap-[4px] p-[9px] sm:p-0 rounded-[9px] outline-1 outline-black/6 sm:outline-none sm:rounded-none">
+                  <span className="font-normal text-[14px] leading-[136.43%] no-underline sm:underline text-[#717171] hover:text-black transition-colors duration-200">
+                    He is currently working on 
+                  </span>
+                </Link>
+            </motion.div> */}
             <div className="flex flex-row items-center gap-[17px] self-end">
               <motion.div initial={{ opacity: 0, y: 10, filter: 'blur(12px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} transition={{ delay: 0.2, duration: 0.5 }}>
                 <Link href="https://github.com/mrtdurdenthe2" className="flex flex-row items-center gap-[4px] p-[9px] sm:p-0 rounded-[9px] outline-1 outline-black/6 sm:outline-none sm:rounded-none">
