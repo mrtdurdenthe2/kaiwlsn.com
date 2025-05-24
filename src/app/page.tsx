@@ -64,9 +64,9 @@ export default function Home() {
               preset="fade-in-blur"
               speedReveal={19}
               speedSegment={0.66}
-              className="font-normal text-[14px] leading-[136.43%] text-[#313131] w-full sm:w-[477px] sm:text-left"
+              className="font-normal text-[15px] leading-[136.43%] text-[#313131] w-full sm:w-[477px] sm:text-left"
             >
-              is a product-orientated software engineer from England, interested in functional design, learning Rust, running businesses, and a bunch of other nerd stuff. 
+              is an 18-year-old, product-orientated software engineer from England - who's interested in functional design, learning Rust, running businesses, and a bunch of other nerdy stuff. 
             </TextEffect>
 
             {/* <motion.div initial={{ opacity: 0, y: 10, filter: 'blur(12px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} transition={{ delay: 0.2, duration: 0.5 }}>
