@@ -92,17 +92,15 @@ export const pastWorkMetadata: PastWorkMeta[] = [
   },
    {
     filename: 'navbarorage.webm',
-    title: 'Pricing Sectioan',
-    subtitle: 'Designed in Figma, implemented with NextJS and TailwindCSS',
+    title: 'Navbar Explorations',
     description:
-      'Made for a design agency, wanted to make the pricing clear while not making it too overwhelming between the options. The different colors at the top hint toward different pricing plans',
+      'Implmented with nextjs and CSS transitions',
   }, 
    {
     filename: 'shakeybutton.webm',
-    title: 'Pricing Sectioan',
-    subtitle: 'Designed in Figma, implemented with NextJS and TailwindCSS',
+    title: 'Shakey Button Exploration',
     description:
-      'Made for a design agency, wanted to make the pricing clear while not making it too overwhelming between the options. The different colors at the top hint toward different pricing plans',
+      'Made in Rive',
     order: 6,
   }, 
 ];
