@@ -10,6 +10,8 @@ type MetaProps = {
   title?: string;
   subtitle?: string;
   description?: string;
+  /** Optional order to control display sequence; lower numbers display first */
+  order?: number;
   // Add other properties if meta has them
 };
 
@@ -26,7 +28,7 @@ export default async function Page() {
   try {
     const files = await fs.readdir(publicDir);
     images = files
-      .filter((file) => /\.(jpe?g|png|gif|webp|avif)$/i.test(file))
+      .filter((file) => /\.(jpe?g|png|gif|webp|avif|mp4|webm|mov)$/i.test(file))
       .map((file) => `/pastwork/${file}`);
   } catch (error) {
     console.error('Error reading pastwork images:', error);
@@ -41,5 +43,9 @@ export default async function Page() {
     return { src, meta: meta ? { ...meta } : undefined };
   });
 
-  return <PastWorkClient enrichedImages={enriched} />;
+  // sort enriched items by optional order (ascending); items without order appear last
+  const sorted: EnrichedImage[] = [...enriched].sort(
+    (a, b) => (a.meta?.order ?? Infinity) - (b.meta?.order ?? Infinity)
+  );
+  return <PastWorkClient enrichedImages={sorted} />;
 }

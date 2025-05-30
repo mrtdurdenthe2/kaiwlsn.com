@@ -7,6 +7,8 @@ export interface PastWorkMeta {
   subtitle?: string;
   /** Short description or narrative for the work */
   description: string;
+  /** Optional order to control display sequence; lower numbers display first */
+  order?: number;
 }
 
 /**
@@ -34,6 +36,7 @@ export const pastWorkMetadata: PastWorkMeta[] = [
     subtitle: 'Figma Design',
     description:
       "Wanted to go for a metal looking navbar, with the selected button emmiting light onto the other buttons.",
+    order: 4,
   },
   {
     filename: 'image04.png',
@@ -41,6 +44,7 @@ export const pastWorkMetadata: PastWorkMeta[] = [
     subtitle: 'Designed in Figma, made in NextJS and TailwindCSS',
     description:
       'Wanted to go for game cartriged inspired UI, where the user can swich between AI manufacturers and models by swiping, then inserting the card once they have selected the model.',
+    order: 2,
   },
   {
     filename: 'image05.png',
@@ -48,6 +52,7 @@ export const pastWorkMetadata: PastWorkMeta[] = [
     subtitle: 'Designed in Figma',
     description:
       'Wanted to make a design of what I would think the Vine app would look like today, inspired by the X mobile UI.',
+    order: 3,
   },
   {
     filename: 'image06.png',
@@ -76,6 +81,7 @@ export const pastWorkMetadata: PastWorkMeta[] = [
     subtitle: 'Designed in Figma, implemented with NextJS and TailwindCSS',
     description:
       'Aimed to recreate the iMessage style with the blue text boxes',
+    order: 1,
   },
   {
     filename: 'image11.png',
@@ -84,4 +90,19 @@ export const pastWorkMetadata: PastWorkMeta[] = [
     description:
       'Made for a design agency, wanted to make the pricing clear while not making it too overwhelming between the options. The different colors at the top hint toward different pricing plans',
   },
+   {
+    filename: 'navbarorage.webm',
+    title: 'Pricing Sectioan',
+    subtitle: 'Designed in Figma, implemented with NextJS and TailwindCSS',
+    description:
+      'Made for a design agency, wanted to make the pricing clear while not making it too overwhelming between the options. The different colors at the top hint toward different pricing plans',
+  }, 
+   {
+    filename: 'shakeybutton.webm',
+    title: 'Pricing Sectioan',
+    subtitle: 'Designed in Figma, implemented with NextJS and TailwindCSS',
+    description:
+      'Made for a design agency, wanted to make the pricing clear while not making it too overwhelming between the options. The different colors at the top hint toward different pricing plans',
+    order: 6,
+  }, 
 ];

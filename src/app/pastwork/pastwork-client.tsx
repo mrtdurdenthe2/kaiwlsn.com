@@ -11,6 +11,8 @@ type MetaProps = {
   title?: string;
   subtitle?: string;
   description?: string;
+  /** Optional order to control display sequence; lower numbers display first */
+  order?: number;
   // Add other properties if meta has them based on your actual pastWorkMetadata structure
 };
 

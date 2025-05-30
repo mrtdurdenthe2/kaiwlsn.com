@@ -363,8 +363,23 @@ function MorphingDialogImage({
   className,
   style,
 }: MorphingDialogImageProps) {
-  const { uniqueId } = useMorphingDialog();
-
+  const { isOpen, uniqueId } = useMorphingDialog();
+  const isVideo = /\.(mp4|webm|ogg)$/i.test(src);
+  if (isVideo) {
+    const videoProps = isOpen
+      ? { controls: true, autoPlay: true }
+      : { muted: true, loop: true, playsInline: true, autoPlay: true };
+    return (
+      <motion.video
+        layout
+        layoutId={`dialog-img-${uniqueId}`}
+        src={src}
+        className={cn(className)}
+        style={style}
+        {...videoProps}
+      />
+    );
+  }
   return (
     <motion.img
       layout
