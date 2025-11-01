@@ -6,7 +6,6 @@ import Link from 'next/link';
 // import { GithubLogoIcon} from '@phosphor-icons/react';
 import { useRef, useLayoutEffect } from 'react';
 import { TextEffect } from '@/components/ui/text-effect';
-import { motion } from 'motion/react';
 
 const inter = Inter({ subsets: ['latin'], weight: ['400', '500'] });
 
@@ -17,9 +16,9 @@ type ProjectItem = {
 };
 
 const projects: ProjectItem[] = [
-  { title: 'shortlife', href: '#' },
-  { title: 'Rust-based frequency modulation tool', href: '#' },
-  { title: 'Simple, true progressive blur component', href: '#' },
+  { title: 'shortlife', href: 'https://github.com/mrtdurdenthe2/shortlife' },
+  { title: 'Rust-based frequency modulation tool', href: 'https://github.com/mrtdurdenthe2/frequencymodulationtester' },
+  { title: 'Simple, true progressive blur component', href: 'https://github.com/mrtdurdenthe2/progessiveblurcn' },
 ];
 
 export default function Home() {
