@@ -44,8 +44,8 @@ export default function Home() {
   }, []);
 
   return (
-    <main className={`${inter.className} flex justify-center items-center min-h-screen px-6`}>
-      <div className="flex flex-col items-end gap-[36px]">
+    <main className={`${inter.className} flex justify-center items-start min-h-screen px-6`}>
+      <div className="flex flex-col items-end gap-[36px] pt-15">
         <div className="flex flex-col items-center sm:items-end gap-[36px] w-full">
           <div className="flex flex-col items-start gap-[31px] w-full">
             <div className="relative w-[167px] h-[165px]">
@@ -90,7 +90,7 @@ export default function Home() {
                 </Link>
             </motion.div> */}
             {/* Projects section */}
-            <section className="self-start w-full sm:w-[477px] space-y-3">
+            <section className="self-start w-full sm:w-[477px] space-y-1">
               <h2 className="font-medium text-[18px] text-black">Projects</h2>
               <ul className="space-y-1">
                 {projects.map((p, i) => (
