@@ -1,10 +1,10 @@
 "use client";
 
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
 import { Inter } from 'next/font/google';
-import { motion, LayoutGroup } from 'motion/react';
-import React, { Fragment, useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { LayoutGroup, motion } from 'motion/react';
+import { Fragment, type ComponentType, useState } from 'react';
 
 type NavIconProps = {
   size?: number;
@@ -78,7 +78,7 @@ export function NavBar() {
     const activeId = hoveredId ?? pathname;
 
     // Define navigation items
-    const navItems: { href: string; text: string; icon: React.ComponentType<NavIconProps> }[] = [
+    const navItems: { href: string; text: string; icon: ComponentType<NavIconProps> }[] = [
         { href: "/", text: "Home", icon: HomeIcon },
         { href: "/pastwork", text: "Past Work", icon: SuitcaseIcon },
         { href: "/blog", text: "Blog", icon: BookIcon }

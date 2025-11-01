@@ -1,5 +1,3 @@
-import React from 'react';
-
 export type IconProps = {
   size?: number;
   strokeWidth?: number;

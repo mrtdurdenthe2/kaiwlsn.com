@@ -2,11 +2,11 @@
 
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
-import { useRef, useLayoutEffect } from 'react';
-import { TextEffect } from '@/components/ui/text-effect';
+import { useLayoutEffect, useRef } from 'react';
 import { ArrowTopRightIcon } from '@/components/icons';
+import { TextEffect } from '@/components/ui/text-effect';
 
-
+  
 const inter = Inter({ subsets: ['latin'], weight: ['400', '500'] });
 
 // Procedural data for Projects
@@ -48,7 +48,13 @@ export default function Home() {
         <div className="flex flex-col items-center sm:items-end gap-[36px] w-full">
           <div className="flex flex-col items-start gap-[31px] w-full">
             <div className="relative w-[167px] h-[165px]">
-              <svg ref={svgRef} viewBox="0 0 186 182" style={{ visibility: 'hidden' }} className="absolute top-0 left-0 w-full h-full">
+              <svg
+                ref={svgRef}
+                viewBox="0 0 186 182"
+                style={{ visibility: 'hidden' }}
+                className="absolute top-0 left-0 w-full h-full"
+              >
+                <title>Animated signature outline</title>
                 <defs>
                   <mask id="revealMask">
                     <rect width="100%" height="100%" fill="black" />
