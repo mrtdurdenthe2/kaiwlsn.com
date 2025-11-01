@@ -4,8 +4,71 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Inter } from 'next/font/google';
 import { motion, LayoutGroup } from 'motion/react';
-import { House, Suitcase, BookOpen, IconProps } from '@phosphor-icons/react';
 import React, { Fragment, useState } from 'react';
+
+type NavIconProps = {
+  size?: number;
+  className?: string;
+};
+
+const iconStrokeProps = {
+  fill: 'none',
+  stroke: 'currentColor',
+  strokeWidth: 1.6,
+  strokeLinecap: 'round' as const,
+  strokeLinejoin: 'round' as const,
+};
+
+function HomeIcon({ size = 24, className }: NavIconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className={className}
+      {...iconStrokeProps}
+    >
+      <path d="M3.5 10.5 12 3l8.5 7.5" />
+      <path d="M5.5 11.5V20a1 1 0 0 0 1 1h4.5v-4.5h2V21H17a1 1 0 0 0 1-1v-8.5" />
+    </svg>
+  );
+}
+
+function SuitcaseIcon({ size = 24, className }: NavIconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className={className}
+      {...iconStrokeProps}
+    >
+      <rect x="3.5" y="7.5" width="17" height="11.5" rx="2" />
+      <path d="M9 5.5h6a1 1 0 0 1 1 1V7.5H8V6.5a1 1 0 0 1 1-1Z" />
+      <path d="M3.5 13h17" />
+    </svg>
+  );
+}
+
+function BookIcon({ size = 24, className }: NavIconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className={className}
+      {...iconStrokeProps}
+    >
+      <path d="M5.5 5.5h5.25a2.25 2.25 0 0 1 2.25 2.25V20H7.75a2.25 2.25 0 0 0-2.25 2.25V5.5Z" />
+      <path d="M18.5 5.5h-5.25A2.25 2.25 0 0 0 11 7.75V20h5.25a2.25 2.25 0 0 1 2.25 2.25V5.5Z" />
+      <path d="M11 9.5h-4" />
+      <path d="M18.5 9.5h-4" />
+    </svg>
+  );
+}
 
 const inter = Inter({ subsets: ['latin'], weight: ['400'] });
 
@@ -15,10 +78,10 @@ export function NavBar() {
     const activeId = hoveredId ?? pathname;
 
     // Define navigation items
-    const navItems: { href: string; text: string; icon: React.ComponentType<IconProps> }[] = [
-        { href: "/", text: "Home", icon: House },
-        { href: "/pastwork", text: "Past Work", icon: Suitcase },
-        { href: "/blog", text: "Blog", icon: BookOpen }
+    const navItems: { href: string; text: string; icon: React.ComponentType<NavIconProps> }[] = [
+        { href: "/", text: "Home", icon: HomeIcon },
+        { href: "/pastwork", text: "Past Work", icon: SuitcaseIcon },
+        { href: "/blog", text: "Blog", icon: BookIcon }
     ];
 
     return (
@@ -59,7 +122,7 @@ export function NavBar() {
                                         transition={{ type: 'spring', duration: 0.3 }}
                                         className="flex-shrink-0 flex items-center justify-center"
                                     >
-                                        <Icon size={24} weight="fill" />
+                                        <Icon size={24} />
                                     </motion.span>
                                 )}
                                 <span

@@ -4,7 +4,7 @@
 import 'highlight.js/styles/github.css';
 import { useState, useRef, Children, isValidElement } from 'react';
 import type { ReactElement } from 'react';
-import { Copy, Check } from '@phosphor-icons/react';
+import { CopyIcon, CheckIcon } from '@/components/icons';
 
 interface CodeBlockProps {
   children: React.ReactNode;
@@ -52,7 +52,7 @@ export default function CodeBlock({ children }: CodeBlockProps) {
             >
               <span className="text-xs font-medium text-black">{language}</span>
               <button onClick={handleCopy} className="p-1 text-gray-500 hover:text-gray-800 focus:outline-none">
-                {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                {copied ? <CheckIcon className="h-4 w-4" /> : <CopyIcon className="h-4 w-4" />}
               </button>
             </div>
           </div>

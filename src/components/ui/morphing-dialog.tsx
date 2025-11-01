@@ -18,7 +18,7 @@ import {
 } from 'motion/react';
 import { createPortal } from 'react-dom';
 import { cn } from '@/lib/utils';
-import { XIcon } from '@phosphor-icons/react';
+import { XMarkIcon } from '@/components/icons';
 import useClickOutside from '@/hooks/useClickOutside';
 
 export type MorphingDialogContextType = {
@@ -425,7 +425,7 @@ function MorphingDialogClose({
       exit='exit'
       variants={variants}
     >
-      {children || <XIcon weight='regular' size={24} />}
+      {children || <XMarkIcon size={24} strokeWidth={1.8} />}
     </motion.button>
   );
 }

@@ -1,12 +1,11 @@
 "use client";
 
 import { Inter } from 'next/font/google';
-import { ArrowSquareOutIcon } from '@phosphor-icons/react';
 import Link from 'next/link';
-// import { GithubLogoIcon} from '@phosphor-icons/react';
 import { useRef, useLayoutEffect } from 'react';
 import { TextEffect } from '@/components/ui/text-effect';
-import { motion } from 'motion/react';
+import { ArrowTopRightIcon } from '@/components/icons';
+
 
 const inter = Inter({ subsets: ['latin'], weight: ['400', '500'] });
 
@@ -97,7 +96,7 @@ export default function Home() {
                   <li key={`${p.title}-${i}`} className="w-full">
                     <Link href={p.href} className="group flex items-center justify-between w-full py-1">
                       <span className="text-[16px] text-[#313131] transition-colors group-hover:text-blue-600">{p.title}</span>
-                      <ArrowSquareOutIcon size={16} className="text-[#313131] transition-colors group-hover:text-blue-600" />
+                      <ArrowTopRightIcon className="text-[#313131] transition-colors group-hover:text-blue-600" />
                     </Link>
                   </li>
                 ))}
