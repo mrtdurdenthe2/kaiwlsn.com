@@ -1,13 +1,26 @@
 "use client";
 
 import { Inter } from 'next/font/google';
+import { ArrowSquareOutIcon } from '@phosphor-icons/react';
 import Link from 'next/link';
-import { GithubLogoIcon} from '@phosphor-icons/react';
+// import { GithubLogoIcon} from '@phosphor-icons/react';
 import { useRef, useLayoutEffect } from 'react';
 import { TextEffect } from '@/components/ui/text-effect';
 import { motion } from 'motion/react';
 
-const inter = Inter({ subsets: ['latin'], weight: ['400'] });
+const inter = Inter({ subsets: ['latin'], weight: ['400', '500'] });
+
+// Procedural data for Projects
+type ProjectItem = {
+  title: string;
+  href: string;
+};
+
+const projects: ProjectItem[] = [
+  { title: 'shortlife', href: '#' },
+  { title: 'Rust-based frequency modulation tool', href: '#' },
+  { title: 'Simple, true progressive blur component', href: '#' },
+];
 
 export default function Home() {
   const pathRef = useRef<SVGPathElement>(null);
@@ -76,16 +89,20 @@ export default function Home() {
                   </span>
                 </Link>
             </motion.div> */}
-            <div className="flex flex-row items-center gap-[17px] self-end">
-              <motion.div initial={{ opacity: 0, y: 10, filter: 'blur(12px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} transition={{ delay: 0.2, duration: 0.5 }}>
-                <Link href="https://github.com/mrtdurdenthe2" className="flex flex-row items-center gap-[4px] p-[9px] sm:p-0 rounded-[9px] outline-1 outline-black/6 sm:outline-none sm:rounded-none">
-                  <GithubLogoIcon size={16} weight="duotone" className="text-[#717171]" />
-                  <span className="font-normal text-[14px] leading-[136.43%] no-underline sm:underline text-[#717171] hover:text-black transition-colors duration-200">
-                    Github
-                  </span>
-                </Link>
-              </motion.div>
-            </div>
+            {/* Projects section */}
+            <section className="self-start w-full sm:w-[477px] space-y-3">
+              <h2 className="font-medium text-[18px] text-black">Projects</h2>
+              <ul className="space-y-1">
+                {projects.map((p, i) => (
+                  <li key={`${p.title}-${i}`} className="w-full">
+                    <Link href={p.href} className="group flex items-center justify-between w-full py-1">
+                      <span className="text-[16px] text-[#313131] transition-colors group-hover:text-blue-600">{p.title}</span>
+                      <ArrowSquareOutIcon size={16} className="text-[#313131] transition-colors group-hover:text-blue-600" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
           </div>
         </div>
       </div>

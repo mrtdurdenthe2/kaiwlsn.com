@@ -30,7 +30,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-black flex flex-col items-center min-h-screen`}
       >
         <PostHogProvider>
-          <div className="w-full flex-1 flex flex-col items-center justify-center pb-16">
+          <div className="w-full flex-1 flex flex-col items-center justify-center">
             {children}
           </div>
           <div className="fixed bottom-14 left-0 w-full flex justify-center px-14">
