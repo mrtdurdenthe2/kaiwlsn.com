@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Inter } from 'next/font/google';
 import { motion, LayoutGroup } from 'motion/react';
-import { House, Suitcase, BookOpen, IconProps } from '@phosphor-icons/react';
+import { House, PencilIcon, BookOpen, IconProps } from '@phosphor-icons/react';
 import React, { Fragment, useState } from 'react';
 
 const inter = Inter({ subsets: ['latin'], weight: ['400'] });
@@ -17,7 +17,7 @@ export function NavBar() {
     // Define navigation items
     const navItems: { href: string; text: string; icon: React.ComponentType<IconProps> }[] = [
         { href: "/", text: "Home", icon: House },
-        { href: "/pastwork", text: "Past Work", icon: Suitcase },
+        { href: "/pastwork", text: "Designs", icon: PencilIcon },
         { href: "/blog", text: "Blog", icon: BookOpen }
     ];
 

@@ -78,7 +78,7 @@ export default function Home() {
               speedSegment={0.66}
               className="font-normal text-[15px] leading-[136.43%] text-[#313131] w-full sm:w-[477px] sm:text-left"
             >
-              is an 18-year-old, product-orientated software engineer from England - who&apos;s interested in functional design, learning Rust, running businesses, and a bunch of other nerdy stuff. 
+              is an 18-year-old, product-orientated software engineer from England - who&apos;s interested in functional programming, learning Rust and EffectTS, and also does UI design every now and again. 
             </TextEffect>
 
             {/* <motion.div initial={{ opacity: 0, y: 10, filter: 'blur(12px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} transition={{ delay: 0.2, duration: 0.5 }}>
