@@ -20,6 +20,7 @@ import { createPortal } from 'react-dom';
 import { cn } from '@/lib/utils';
 import { XMarkIcon } from '@/components/icons';
 import useClickOutside from '@/hooks/useClickOutside';
+import Image from 'next/image';
 
 export type MorphingDialogContextType = {
   isOpen: boolean;
@@ -30,6 +31,8 @@ export type MorphingDialogContextType = {
 
 const MorphingDialogContext =
   React.createContext<MorphingDialogContextType | null>(null);
+
+const MotionImage = motion.create(Image);
 
 export function useMorphingDialog() {
   const context = useContext(MorphingDialogContext);
@@ -148,6 +151,7 @@ function MorphingDialogContent({
     useState<HTMLElement | null>(null);
   const [lastFocusableElement, setLastFocusableElement] =
     useState<HTMLElement | null>(null);
+  const wasOpenRef = useRef(false);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -193,8 +197,11 @@ function MorphingDialogContent({
       }
     } else {
       document.body.classList.remove('overflow-hidden');
-      triggerRef.current?.focus();
+      if (wasOpenRef.current) {
+        triggerRef.current?.focus();
+      }
     }
+    wasOpenRef.current = isOpen;
   }, [isOpen, triggerRef]);
 
   useClickOutside(containerRef, () => {
@@ -353,6 +360,8 @@ function MorphingDialogDescription({
 export type MorphingDialogImageProps = {
   src: string;
   alt: string;
+  width?: number;
+  height?: number;
   className?: string;
   style?: React.CSSProperties;
 };
@@ -360,6 +369,8 @@ export type MorphingDialogImageProps = {
 function MorphingDialogImage({
   src,
   alt,
+  width,
+  height,
   className,
   style,
 }: MorphingDialogImageProps) {
@@ -380,12 +391,27 @@ function MorphingDialogImage({
       />
     );
   }
+  if (typeof width !== 'number' || typeof height !== 'number') {
+    return (
+      <motion.img
+        layout
+        layoutId={`dialog-img-${uniqueId}`}
+        src={src}
+        alt={alt}
+        className={cn(className)}
+        style={style}
+      />
+    );
+  }
   return (
-    <motion.img
+    <MotionImage
       layout
       layoutId={`dialog-img-${uniqueId}`}
       src={src}
       alt={alt}
+      width={width}
+      height={height}
+      sizes='100vw'
       className={cn(className)}
       style={style}
     />

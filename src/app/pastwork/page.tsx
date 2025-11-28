@@ -2,6 +2,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import { pastWorkMetadata } from './workMetadata';
 import { PastWorkClient } from './pastwork-client';
+import imageSize from 'image-size';
 
 // Define a type for the 'meta' prop based on pastWorkMetadata structure
 // This should match or be compatible with MetaProps in pastwork-client.tsx
@@ -19,6 +20,8 @@ type MetaProps = {
 // This should match or be compatible with EnrichedImage in pastwork-client.tsx
 type EnrichedImage = {
   src: string;
+  width?: number;
+  height?: number;
   meta?: MetaProps; // meta can be undefined if not found
 };
 
@@ -37,11 +40,37 @@ export default async function Page() {
   }
 
   // merge images with metadata
-  const enriched: readonly EnrichedImage[] = images.map((src) => {
-    const filename = src.split('/').pop() ?? '';
-    const meta = pastWorkMetadata.find((m) => m.filename === filename);
-    return { src, meta: meta ? { ...meta } : undefined };
-  });
+  const enriched: readonly EnrichedImage[] = await Promise.all(
+    images.map(async (src) => {
+      const filename = src.split('/').pop() ?? '';
+      const meta = pastWorkMetadata.find((m) => m.filename === filename);
+      let width: number | undefined;
+      let height: number | undefined;
+
+      const isVideo = /\.(mp4|webm|mov)$/i.test(filename);
+      if (!isVideo) {
+        const absolutePath = path.join(publicDir, filename);
+        try {
+          const fileBuffer = await fs.readFile(absolutePath);
+          const dimensions = imageSize(fileBuffer);
+          width = dimensions?.width;
+          height = dimensions?.height;
+        } catch (dimensionError) {
+          console.error(
+            `Error reading dimensions for pastwork asset: ${absolutePath}`,
+            dimensionError
+          );
+        }
+      }
+
+      return {
+        src,
+        width,
+        height,
+        meta: meta ? { ...meta } : undefined,
+      };
+    })
+  );
 
   // sort enriched items by optional order (ascending); items without order appear last
   const sorted: EnrichedImage[] = [...enriched].sort(

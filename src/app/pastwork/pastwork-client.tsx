@@ -19,6 +19,8 @@ type MetaProps = {
 // Define a type for the 'enriched' data items
 type EnrichedImage = {
   src: string;
+  width?: number;
+  height?: number;
   meta?: MetaProps; // meta can be undefined if not found
 };
 
@@ -37,18 +39,20 @@ export function PastWorkClient({ enrichedImages }: PastWorkClientProps) {
             visible: { opacity: 1, transition: { staggerChildren: 0.09 } },
           }}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-5 justify-items-center">
-            {enrichedImages.map(({ src, meta }) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-5 justify-items-center">
+            {enrichedImages.map(({ src, width, height, meta }) => (
               <motion.div
                 variants={{
                   hidden: { opacity: 0, scale: 0.8, filter: 'blur(10px)' },
                   visible: { opacity: 1, scale: 1, filter: 'blur(0px)' },
                 }}
                 key={src}
-                className="w-full h-full" // Ensure motion.div takes full space
+                className="w-[90vw] max-w-[90vw] h-full md:w-full md:max-w-full" // Wider cards on mobile
               >
                 <MorphingDialogBasic
                   src={src}
+                  width={width}
+                  height={height}
                   alt={meta?.title || 'Past work image'}
                   title={meta?.title}
                   subtitle={meta?.subtitle}

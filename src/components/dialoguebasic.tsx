@@ -19,6 +19,10 @@ import {
     src: string;
     /** Accessible alt text for the image */
     alt?: string;
+    /** Intrinsic image width derived from the asset metadata */
+    width?: number;
+    /** Intrinsic image height derived from the asset metadata */
+    height?: number;
     /** Optional title displayed inside the dialog */
     title?: string;
     /** Optional subtitle displayed below the title */
@@ -34,6 +38,8 @@ import {
   export function MorphingDialogBasic({
     src,
     alt = 'Past work image',
+    width,
+    height,
     title,
     subtitle,
     description,
@@ -54,6 +60,8 @@ import {
           <MorphingDialogImage
             src={src}
             alt={alt}
+            width={width}
+            height={height}
             className='w-full h-full object-cover'
           />
           {(title || subtitle) && (
@@ -88,6 +96,8 @@ import {
             <MorphingDialogImage
               src={src}
               alt={alt}
+              width={width}
+              height={height}
               className='w-full h-auto object-contain'
             />
             <div className='p-6'>
