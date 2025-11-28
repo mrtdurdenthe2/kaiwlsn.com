@@ -3,6 +3,7 @@
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import { useLayoutEffect, useRef } from 'react';
+import { motion } from 'motion/react';
 import { ArrowTopRightIcon } from '@/components/icons';
 import { TextEffect } from '@/components/ui/text-effect';
 
@@ -21,21 +22,37 @@ const projects: ProjectItem[] = [
   { title: 'Simple, true progressive blur component', href: 'https://github.com/mrtdurdenthe2/progessiveblurcn' },
 ];
 
+const signaturePaths = [
+  'M30.8439 80.5C37.2466 55.7284 44.3228 28.1498 49 11',
+  'M30.8439 80.5C39.5916 76.2023 55.7472 66.4325 68.3923 54',
+  'M30.8439 80.5C29.3785 86.1692 27.9223 91.8485 26.5 97.4512',
+  'M68.3923 54C73.8915 48.5932 82.7267 36.6829 86 30.5',
+  'M68.3923 54C60.7214 67.7049 46.9388 89.7052 34.5462 112.983',
+  'M34.5462 112.983C22.0722 136.414 11.0066 161.138 9 180C10.0421 169.788 18.1923 130.177 26.5 97.4512',
+  'M34.5462 112.983C32.1156 108.098 29.4429 102.92 26.5 97.4512',
+  'M34.5462 112.983C57.5549 159.223 58.8822 179.236 62.5 172C65.7873 165.425 71.4187 154.585 77.702 144.5',
+  'M77.702 144.5C89.5769 125.441 105.566 103.725 121 93C119.833 106 117.5 132.3 117.5 133.5',
+  'M77.702 144.5C77.8014 158.5 85.9 175.9 117.5 133.5',
+  'M117.5 133.5C117.5 151.5 126 162.2 158 89C161.2 175.4 172.167 149.833 177.5 125',
+  'M150.5 38.5C153.167 29.3333 164 8.99999 177.5 9',
+];
+
 export default function Home() {
-  const pathRef = useRef<SVGPathElement>(null);
+  const pathRefs = useRef<(SVGPathElement | null)[]>([]);
   const svgRef = useRef<SVGSVGElement>(null);
 
   useLayoutEffect(() => {
-    const path = pathRef.current;
-    if (path) {
+    pathRefs.current.forEach((path, index) => {
+      if (!path) return;
       const length = path.getTotalLength();
       path.style.strokeDasharray = `${length}`;
       path.style.strokeDashoffset = `${length}`;
-      // Force a layout so the animation triggers correctly
+      // Force layout so dash array is applied before animation
       path.getBBox();
-      path.style.transition = 'stroke-dashoffset 2s ease-out';
+      path.style.transition = 'stroke-dashoffset 1s ease-out';
+      path.style.transitionDelay = `${index * 0.01}s`;
       path.style.strokeDashoffset = '0';
-    }
+    });
     const svg = svgRef.current;
     if (svg) {
       svg.style.visibility = 'visible';
@@ -58,13 +75,18 @@ export default function Home() {
                 <defs>
                   <mask id="revealMask">
                     <rect width="100%" height="100%" fill="black" />
-                    <path
-                      ref={pathRef}
-                      d="M30.8439 80.5C37.2466 55.7284 44.3228 28.1498 49 11M30.8439 80.5C39.5916 76.2023 55.7472 66.4325 68.3923 54M30.8439 80.5C29.3785 86.1692 27.9223 91.8485 26.5 97.4512M68.3923 54C73.8915 48.5932 82.7267 36.6829 86 30.5M68.3923 54C60.7214 67.7049 46.9388 89.7052 34.5462 112.983M34.5462 112.983C22.0722 136.414 11.0066 161.138 9 180C10.0421 169.788 18.1923 130.177 26.5 97.4512M34.5462 112.983C32.1156 108.098 29.4429 102.92 26.5 97.4512M34.5462 112.983C57.5549 159.223 58.8822 179.236 62.5 172C65.7873 165.425 71.4187 154.585 77.702 144.5M77.702 144.5C89.5769 125.441 105.566 103.725 121 93C119.833 106 117.5 132.3 117.5 133.5M77.702 144.5C77.8014 158.5 85.9 175.9 117.5 133.5M117.5 133.5C117.5 151.5 126 162.2 158 89C161.2 175.4 172.167 149.833 177.5 125M150.5 38.5C153.167 29.3333 164 8.99999 177.5 9"
-                      stroke="white"
-                      strokeWidth={17}
-                      fill="none"
-                    />
+                    {signaturePaths.map((d, index) => (
+                      <path
+                        key={`signature-segment-${index}`}
+                        ref={(el) => {
+                          pathRefs.current[index] = el;
+                        }}
+                        d={d}
+                        stroke="white"
+                        strokeWidth={17}
+                        fill="none"
+                      />
+                    ))}
                   </mask>
                 </defs>
                 <image
@@ -84,18 +106,15 @@ export default function Home() {
               speedSegment={0.66}
               className="font-normal text-[15px] leading-[136.43%] text-[#313131] w-full sm:w-[477px] sm:text-left"
             >
-              is an 18-year-old, product-orientated software engineer from England - who&apos;s interested in functional programming, learning Rust and EffectTS, and also does UI design every now and again. 
+              is an 18-year-old, product-orientated software engineer from England - who&apos;s interested in Rust and EffectTS, and also does UI design every now and again. 
             </TextEffect>
 
-            {/* <motion.div initial={{ opacity: 0, y: 10, filter: 'blur(12px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} transition={{ delay: 0.2, duration: 0.5 }}>
-                <Link href="https://github.com/mrtdurdenthe2" className="flex flex-row items-center gap-[4px] p-[9px] sm:p-0 rounded-[9px] outline-1 outline-black/6 sm:outline-none sm:rounded-none">
-                  <span className="font-normal text-[14px] leading-[136.43%] no-underline sm:underline text-[#717171] hover:text-black transition-colors duration-200">
-                    He is currently working on 
-                  </span>
-                </Link>
-            </motion.div> */}
-            {/* Projects section */}
-            <section className="self-start w-full sm:w-[477px] space-y-1">
+            <motion.section
+              initial={{ opacity: 0, y: 20, filter: 'blur(30px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2}}
+              className="self-start w-full sm:w-[477px] space-y-1"
+            >
               <h2 className="font-medium text-[18px] text-black">Projects</h2>
               <ul className="space-y-1">
                 {projects.map((p, i) => (
@@ -107,7 +126,7 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-            </section>
+            </motion.section>
           </div>
         </div>
       </div>
