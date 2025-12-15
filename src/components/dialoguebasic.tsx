@@ -87,11 +87,7 @@ import {
         </MorphingDialogTrigger>
         <MorphingDialogContainer>
           <MorphingDialogContent
-            style={{
-                width: '50%',
-                borderRadius: '20px',
-            }}
-            className='pointer-events-auto relative flex h-auto flex-col overflow-hidden border border-zinc-950/10 bg-white dark:border-zinc-50/10 dark:bg-zinc-900'
+            className='pointer-events-auto relative flex h-auto flex-col overflow-hidden w-full max-w-full md:w-1/2 md:max-w-[50%] md:rounded-[20px] md:border md:border-zinc-950/10 md:bg-white dark:md:border-zinc-50/10 dark:md:bg-zinc-900'
           >
             <MorphingDialogImage
               src={src}
@@ -100,7 +96,7 @@ import {
               height={height}
               className='w-full h-auto object-contain'
             />
-            <div className='p-6'>
+            <div className='hidden md:block p-6'>
               {title && (
                 <MorphingDialogTitle className='text-2xl text-zinc-950 dark:text-zinc-50'>
                   {title}
@@ -124,7 +120,7 @@ import {
                 </MorphingDialogDescription>
               )}
             </div>
-            <MorphingDialogClose className='text-zinc-50' />
+            <MorphingDialogClose className='text-zinc-50 hidden md:block' />
           </MorphingDialogContent>
         </MorphingDialogContainer>
       </MorphingDialog>
