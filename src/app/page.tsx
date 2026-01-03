@@ -13,13 +13,14 @@ const inter = Inter({ subsets: ['latin'], weight: ['400', '500'] });
 // Procedural data for Projects
 type ProjectItem = {
   title: string;
+  description?: string;
   href: string;
 };
 
 const projects: ProjectItem[] = [
-  { title: 'shortlife', href: 'https://github.com/mrtdurdenthe2/shortlife' },
-  { title: 'Rust-based frequency modulation tool', href: 'https://github.com/mrtdurdenthe2/frequencymodulationtester' },
-  { title: 'Simple, true progressive blur component', href: 'https://github.com/mrtdurdenthe2/progessiveblurcn' },
+  { title: 'corewatch', description: 'Rust-based web analytics server', href: 'https://github.com/mrtdurdenthe2/corewatch' },
+  { title: 'shortlife', description: 'CLI based timer that counts down till a certain age',href: 'https://github.com/mrtdurdenthe2/shortlife' },
+  { title: 'progessiveblurcn', description: 'Simple, true progressive blur component', href: 'https://github.com/mrtdurdenthe2/progessiveblurcn' },
 ];
 
 const signaturePaths = [
@@ -106,7 +107,7 @@ export default function Home() {
               speedSegment={0.66}
               className="font-normal text-[15px] leading-[136.43%] text-[#313131] w-full sm:w-[477px] sm:text-left"
             >
-              is an 18-year-old, product-orientated software engineer from England - who&apos;s interested in Rust and EffectTS, and also does UI design every now and again. 
+              is an 18-year-old, product-orientated software engineer from England - who&apos;s interested in Rust and the TS ecosystem, and also does UI design every now and again. 
             </TextEffect>
 
             <motion.section
@@ -119,9 +120,19 @@ export default function Home() {
               <ul className="space-y-1">
                 {projects.map((p, i) => (
                   <li key={`${p.title}-${i}`} className="w-full">
-                    <Link href={p.href} className="group flex items-center justify-between w-full py-1">
-                      <span className="text-[16px] text-[#313131] transition-colors group-hover:text-blue-600">{p.title}</span>
-                      <ArrowTopRightIcon className="text-[#313131] transition-colors group-hover:text-blue-600" />
+                    <Link href={p.href} className="group flex flex-col w-full py-1">
+                      <span className="flex items-center justify-between w-full">
+                        <span className="text-[16px] flex items-center gap-2">
+                          <span className="text-[#313131] transition-colors group-hover:text-blue-600">{p.title}</span>
+                          {p.description && (
+                            <span className="text-[#8b8b8b] text-[14px] hidden sm:inline">— {p.description}</span>
+                          )}
+                        </span>
+                        <ArrowTopRightIcon className="text-[#313131] transition-colors group-hover:text-blue-600 flex-shrink-0" />
+                      </span>
+                      {p.description && (
+                        <span className="text-[#8b8b8b] text-[14px] sm:hidden">{p.description}</span>
+                      )}
                     </Link>
                   </li>
                 ))}
