@@ -7,6 +7,8 @@ import CodeBlock from '@/components/ui/CodeBlock';
 import { Lora } from 'next/font/google';
 import Image from 'next/image';
 import type { Metadata, ResolvingMetadata } from 'next';
+import Link from 'next/link';
+import { CaretLeft } from '@phosphor-icons/react/dist/ssr';
 
 interface PostPageProps {
   params: Promise<{
@@ -79,17 +81,28 @@ export default async function PostPage(props: PostPageProps) {
           />
         </div>
       )}
-      <h1 className={`${lora.className} mb-2 text-3xl font-bold leading-tight tracking-tighter`}>
-        {post.frontMatter.title}
-      </h1>
-      <time
-        className="block mb-6 text-sm text-gray-500"
-        dateTime={post.frontMatter.date}
-      >
-        {new Intl.DateTimeFormat('en-US', { dateStyle: 'long' }).format(
-          new Date(post.frontMatter.date)
-        )}
-      </time>
+      <div className="mb-6 flex items-start gap-3">
+        <Link
+          href="/blog"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/5 bg-white text-black transition hover:border-black/10"
+          aria-label="Back to blog"
+        >
+          <CaretLeft size={20} weight="bold" />
+        </Link>
+        <div>
+          <h1 className={`${lora.className} text-3xl font-bold leading-tight tracking-tighter`}>
+            {post.frontMatter.title}
+          </h1>
+          <time
+            className="mt-2 block text-sm text-gray-500"
+            dateTime={post.frontMatter.date}
+          >
+            {new Intl.DateTimeFormat('en-US', { dateStyle: 'long' }).format(
+              new Date(post.frontMatter.date)
+            )}
+          </time>
+        </div>
+      </div>
 
       <MDXRemote
         source={post.content}

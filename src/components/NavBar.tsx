@@ -31,8 +31,12 @@ export function NavBar() {
                 transition={{ delay: 0, duration: 0.3 }}
             >
                 {navItems.map((item, index) => {
-                    const isSelected = pathname === item.href;
-                    const isActive = activeId === item.href;
+                    const isSelected = item.href === "/"
+                        ? pathname === item.href
+                        : pathname.startsWith(item.href);
+                    const isActive = item.href === "/"
+                        ? activeId === item.href
+                        : activeId.startsWith(item.href);
                     const Icon = item.icon;
                     return (
                         <Fragment key={item.href}>
