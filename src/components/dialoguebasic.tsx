@@ -47,7 +47,8 @@ import {
     return (
       <MorphingDialog
         transition={{
-          type: 'ease-in-out',
+          type: 'tween',
+          ease: 'easeInOut',
           duration: 0.15,
         }}
       >
