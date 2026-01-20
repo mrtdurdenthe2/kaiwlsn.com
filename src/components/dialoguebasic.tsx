@@ -13,6 +13,7 @@ import {
   } from '@/components/ui/morphing-dialog';
   import { PlusIcon } from '@/components/icons';
   import type { ReactNode } from 'react';
+  import { usePostHog } from 'posthog-js/react';
 
   export interface MorphingDialogBasicProps {
     /** Image URL relative to the public folder, e.g. `/pastwork/image01.png` */
@@ -44,6 +45,16 @@ import {
     subtitle,
     description,
   }: MorphingDialogBasicProps) {
+    const posthog = usePostHog();
+
+    const handleExpandClick = () => {
+      posthog.capture('pastwork_image_expanded', {
+        src,
+        title: title || null,
+        subtitle: subtitle || null,
+      });
+    };
+
     return (
       <MorphingDialog
         transition={{
@@ -56,6 +67,7 @@ import {
           style={{
             borderRadius: '14px',
           }}
+          onClick={handleExpandClick}
           className='relative overflow-hidden border border-zinc-950/10 bg-white dark:border-zinc-50/10 dark:bg-zinc-900'
         >
           <MorphingDialogImage

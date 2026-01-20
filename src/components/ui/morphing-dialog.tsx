@@ -92,6 +92,7 @@ export type MorphingDialogTriggerProps = {
   className?: string;
   style?: React.CSSProperties;
   triggerRef?: React.RefObject<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 function MorphingDialogTrigger({
@@ -99,12 +100,18 @@ function MorphingDialogTrigger({
   className,
   style,
   triggerRef,
+  onClick,
 }: MorphingDialogTriggerProps) {
   const { setIsOpen, isOpen, uniqueId } = useMorphingDialog();
 
-  const handleClick = useCallback(() => {
-    setIsOpen(!isOpen);
-  }, [isOpen, setIsOpen]);
+  const handleClick = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      onClick?.(event);
+      if (event.defaultPrevented) return;
+      setIsOpen(!isOpen);
+    },
+    [isOpen, onClick, setIsOpen]
+  );
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
