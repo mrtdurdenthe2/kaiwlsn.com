@@ -63,7 +63,7 @@ export function NavBar() {
                                         transition={{ type: 'spring', duration: 0.3 }}
                                         className="flex-shrink-0 flex items-center justify-center"
                                     >
-                                        <Icon size={24} />
+                                        <Icon size={24} weight={item.href === "/" ? "fill" : "regular"} />
                                     </motion.span>
                                 )}
                                 <span
