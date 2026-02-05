@@ -65,7 +65,7 @@ export default function Home() {
       <div className="flex flex-col items-end gap-[36px] pt-15">
         <div className="flex flex-col items-center sm:items-end gap-[36px] w-full">
           <div className="flex flex-col items-start gap-[31px] w-full">
-            <div className="relative w-[167px] h-[165px]">
+            <div className="relative w-[84px] h-[83px]">
               <svg
                 ref={svgRef}
                 viewBox="0 0 186 182"
