@@ -125,13 +125,18 @@ export default function Home() {
                         <span className="text-[16px] flex items-center gap-2">
                           <span className="text-[#313131] transition-colors group-hover:text-blue-600">{p.title}</span>
                           {p.description && (
-                            <span className="text-[#8b8b8b] text-[14px] hidden sm:inline">— {p.description}</span>
+                            <span className="text-[#8b8b8b] text-[14px] hidden sm:inline transition-colors group-hover:text-[#313131]">
+                              <span className="inline-block w-[0.9em]" aria-hidden="true" />
+                              {p.description}
+                            </span>
                           )}
                         </span>
-                        <ArrowTopRightIcon className="text-[#313131] transition-colors group-hover:text-blue-600 flex-shrink-0" />
+                        <ArrowTopRightIcon className="text-[#8b8b8b] transition-colors group-hover:text-[#313131] flex-shrink-0" />
                       </span>
                       {p.description && (
-                        <span className="text-[#8b8b8b] text-[14px] sm:hidden">{p.description}</span>
+                        <span className="text-[#8b8b8b] text-[14px] sm:hidden transition-colors group-hover:text-[#313131]">
+                          {p.description}
+                        </span>
                       )}
                     </Link>
                   </li>
