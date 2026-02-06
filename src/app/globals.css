@@ -47,6 +47,8 @@
 
 body {
   background-color: var(--background);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 :root {
