@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Agentation } from "agentation";
 import "./globals.css";
 import { NavBar } from "@/components/NavBar";
 
@@ -28,6 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-black flex flex-col items-center min-h-screen`}
       >
+        {process.env.NODE_ENV === "development" && <Agentation />}
         <div className="w-full flex-1 flex flex-col items-center justify-center">
           {children}
         </div>

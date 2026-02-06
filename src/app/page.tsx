@@ -114,13 +114,16 @@ export default function Home() {
               initial={{ opacity: 0, y: 20, filter: 'blur(30px)' }}
               animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2}}
-              className="self-start w-full sm:w-[477px] space-y-1"
+              className="self-start w-full sm:w-[477px] space-y-[13px]"
             >
-              <h2 className="font-medium text-[18px] text-black">Projects</h2>
-              <ul className="space-y-1">
+              <div className="flex items-center gap-3">
+                <h2 className="font-medium text-[18px] text-black">Projects</h2>
+                <span className="h-px flex-1 bg-[#ececec]" aria-hidden="true" />
+              </div>
+              <ul className="space-y-0.5">
                 {projects.map((p, i) => (
                   <li key={`${p.title}-${i}`} className="w-full">
-                    <Link href={p.href} className="group flex flex-col w-full py-1">
+                    <Link href={p.href} className="group flex flex-col w-full py-0.5">
                       <span className="flex items-center justify-between w-full">
                         <span className="text-[16px] flex items-center gap-2">
                           <span className="text-[#313131] transition-colors group-hover:text-blue-600">{p.title}</span>
