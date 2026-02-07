@@ -114,10 +114,10 @@ export default function Home() {
               initial={{ opacity: 0, y: 20, filter: 'blur(30px)' }}
               animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2}}
-              className="self-start w-full sm:w-[477px] space-y-[13px]"
+              className="self-start w-full sm:w-[477px] space-y-[6.5px]"
             >
               <div className="flex items-center gap-3">
-                <h2 className="font-medium text-[18px] text-black">Projects</h2>
+                <h2 className="font-normal text-[14px] text-[#8b8b8b]">Projects</h2>
                 <span className="h-px flex-1 bg-[#ececec]" aria-hidden="true" />
               </div>
               <ul className="space-y-0.5">
