@@ -105,7 +105,7 @@ export default function Home() {
               preset="fade-in-blur"
               speedReveal={19}
               speedSegment={0.66}
-              className="font-normal text-[15px] leading-[136.43%] text-[#313131] w-full sm:w-[477px] sm:text-left"
+              className="font-[450] text-[15px] leading-[136.43%] text-[#313131] w-full sm:w-[477px] sm:text-left"
             >
               is an 18-year-old, product-orientated software engineer from England - who&apos;s interested in Rust and the TS ecosystem, and also does UI design every now and again. 
             </TextEffect>
@@ -126,7 +126,7 @@ export default function Home() {
                     <Link href={p.href} className="group flex flex-col w-full py-0.5">
                       <span className="flex items-center justify-between w-full">
                         <span className="text-[16px] flex items-center gap-2">
-                          <span className="text-[#313131] transition-colors group-hover:text-blue-600">{p.title}</span>
+                          <span className="font-[450] text-[#313131] transition-colors group-hover:text-blue-600">{p.title}</span>
                           {p.description && (
                             <span className="text-[#8b8b8b] text-[14px] hidden sm:inline transition-colors group-hover:text-[#313131]">
                               <span className="inline-block w-[0.9em]" aria-hidden="true" />
